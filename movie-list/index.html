@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <!-- 让 ie 使用最新的渲染引擎 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- 视口 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>豆瓣电影</title>
+  <!-- Bootstrap core CSS -->
+  <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+</head>
+
+<body ng-app="app">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">豆瓣电影</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Help</a></li>
+        </ul>
+        <form class="navbar-form navbar-right" ng-controller="SearchController" ng-submit="search(searchText)">
+          <input type="text" ng-model="searchText" class="form-control" placeholder="Search...">
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+          <li class="active"><a href="#!/list/in_theaters">正在热映</a></li>
+          <li><a href="#!/list/coming_soon">即将上映</a></li>
+          <li><a href="#!/list/top250">Top 250</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view>
+      </div>
+    </div>
+  </div>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="app/main.js"></script>
+  <!-- 用来处理被路由匹配到的 in_theaters 中的 view.html 视图的控制器函数 -->
+  <script src="app/in_theaters/controller.js"></script>
+
+  <!-- 为 app 模块添加了一个自定义过滤器，用来解决 正在热映电影列表中循环数据的格式问题 -->
+  <script src="app/in_theaters/filter.js"></script>
+
+  <!-- 路由文件模块，用来为单页应用配置前端视图界面路由：根据不同的请求路径（hash、history）导航到具体的 视图文件以及具体的控制器函数 -->
+  <script src="app/config/router.js"></script>
+
+  <!-- 用来配置跨站请求白名单 -->
+  <script src="app/config/sce.js"></script>
+
+  <!-- 用来为模块提供一个公共的服务：jsonp -->
+  <script src="app/in_theaters/http-service.js"></script>
+
+  <!-- 处理电影详情的控制器 -->
+  <script src="app/subject/controller.js"></script>
+</body>
+
+</html>

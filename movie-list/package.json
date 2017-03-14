@@ -1,0 +1,11 @@
+{
+  "name": "movie-list",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "serve": "browser-sync start --server --port 8080 --files \"./*.html, css/*.css, app/**/*.js, app/**/*.html\""
+  },
+  "repository": {},
+  "license": "MIT",
+  "devDependencies": {}
+}
